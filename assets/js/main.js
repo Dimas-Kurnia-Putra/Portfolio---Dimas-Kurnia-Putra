@@ -201,4 +201,30 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  // Filter functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".service-card");
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        // Add active class to clicked button
+        button.classList.add("active");
+
+        const filterCategory = button.getAttribute("data-filter");
+
+        projectCards.forEach(card => {
+          if (filterCategory === "all" || card.classList.contains(filterCategory)) {
+            card.parentElement.style.display = "block"; // Show card
+          } else {
+            card.parentElement.style.display = "none"; // Hide card
+          }
+        });
+      });
+    });
+  });
+
+
 })();
